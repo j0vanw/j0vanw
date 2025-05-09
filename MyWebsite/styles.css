@@ -1,0 +1,152 @@
+/* Reset Default Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255);
+    color: black;
+    padding: 5px;
+    text-align: center;
+}
+
+/* Navigation Menu - Flexbox for alignment */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: black;
+    color: white;
+}
+
+/* ----- RESPONSIVE DESIGN ----- */
+
+/* Mobile Screens (max-width: 600px) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    /* Make navigation stack vertically */
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+
+    /* Reduce main content width */
+    main {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    /* Adjust footer padding */
+    footer {
+        padding: 15px;
+    }
+}
+
+/* Tablet Screens (max-width: 900px) */
+@media (max-width: 900px) {
+    main {
+        max-width: 90%;
+    }
+}
+
+/* Layout the main nav horizontally */
+.main-nav {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center the main links */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+  }
+  
+  /* Center nav */
+  .nav-center {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Right-side auth nav */
+  .nav-right {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style links and buttons */
+  .main-nav a, .main-nav button {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #333;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .main-nav a:hover,
+  .main-nav button:hover {
+    color: rgb(0, 255, 255);
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  #user-email {
+    color: #007BFF;
+    font-size: 0.9rem;
+  }

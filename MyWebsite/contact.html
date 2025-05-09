@@ -1,0 +1,65 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Contact</h2>
+            <p>If you have any questions, feel free to reach out to me, my name is Jovan:</p>
+            <ul>
+                <li>Email me at skybrojw@gmail.com or click <a href="https://www.instagram.com/j0vanw09?igsh=MTk0MjRtdGN1N2VwaQ==">here</a> to dm me on instagram or contact me at +65 98495755 </a></li>
+
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Jovan Wong's website. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { auth, firebaseFunctions } from "./firebase-config.js";
+        const { signOut, onAuthStateChange } = firebaseFunctions;
+    
+        window.logout = function() {
+            signOut(auth)
+                .then(() => {
+                    alert("You've been logged out.");
+                    window.location.href = "login.html";
+                })
+                .catch((error) => alert("Error logging out: " + error.message));
+        };
+    
+        onAuthStateChange(auth, user => {
+            const loginLink = document.getElementById("login-link");
+            const signupLink = document.getElementById("signup-link");
+            const logoutButton = document.getElementById("logout-btn");
+    
+            if(user) {
+                if(loginLink) loginLink.style.display = "none";
+                if(signupLink) signupLink.style.display = "none";
+                if(logoutBtn) logoutBtn.style.display = "inline-block";
+            } else {
+                if(loginLink) loginLink.style.display = "inline-block";
+                if(signupLink) signupLink.style.display = "inline-block";
+                if(logoutBtn) logoutBtn.style.display = "none";
+            }
+        });
+        </script>
+    </body>
+    </html>
