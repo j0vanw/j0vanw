@@ -150,11 +150,11 @@
          }
 
         async function checkoutStripe() {
-            const response = await fetch("/netlify/functions/create-checkout", {
+            const response = await fetch("/.netlify/functions/create-checkout", {
                 method: "POST",
                 body: JSON.stringify|(cart),
             });
-            
+
             const data = await response.json();
             if (data.url) {
                 window.location.href = data.url;
