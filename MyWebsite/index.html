@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>j0vanw's website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="indexstyles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to My Website.</h1>
+       
+        <nav class="main-nav">
+            <ul class="nav-center">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="shop.html">Shop</a></li>
+            </ul>
+
+            <ul class="nav-right">
+                <li><a href="login.html" id="login-link">Log In</a></li>
+                <li><a href="signup.html" id="signup-link">Sign Up</a></li>
+                <li> <button id="logout-btn" onclick="logout()" style="display: none;">Log Out</button> </li>
+                <li><span id="user-email" style="display: none; font-weight: bold;"></span></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>I will use this website to test on how to create a website using VS Code</h2>
+            <p><h4>Please try and click the home, about and contact hyperlinks to test this website</h4></p>
+            <img src="BMW_ICE.jpg" alt="bmw picture">
+
+            
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Website. All rights reserved.</p>
+    </footer>
+    
+
+<script type="module">
+    import { auth, firebaseFunctions } from "./firebase-config.js";
+    const { signOut, onAuthStateChanged } = firebaseFunctions;
+
+    window.logout = function() {
+        signOut(auth)
+            .then(() => {
+                alert("You've been logged out.");
+                window.location.href = "login.html";
+            })
+            .catch((error) => alert("Error logging out: " + error.message));
+    };
+
+    onAuthStateChanged(auth, user => {
+        const loginLink = document.getElementById("login-link");
+        const signupLink = document.getElementById("signup-link");
+        const logoutBtn = document.getElementById("logout-btn");
+        const userEmail = document.getElementById("user-email");
+
+        if(user) {  
+            if(loginLink) loginLink.style.display = "none";
+            if(signupLink) signupLink.style.display = "none";
+            if(logoutBtn) logoutBtn.style.display = "inline-block";
+            
+            if (userEmail) {
+                userEmail.style.display = "inline-block";
+                const name = user.displayNmae || user.email.split("@")[0];
+                userEmail.textContent = `👋 Welcome, ${name}`;
+            }
+        } else {
+            if(loginLink) loginLink.style.display = "inline-block";
+            if(signupLink) signupLink.style.display = "inline-block";
+            if(logoutBtn) logoutBtn.style.display = "none";
+
+            if (userEmail) {
+                userEmail.style.display = "none";
+                userEmail.textContent = "";
+            }
+        }
+    });
+    </script>
+</body>
+</html>
